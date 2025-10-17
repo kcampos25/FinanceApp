@@ -1,0 +1,100 @@
+# ===========================
+# .gitignore para proyecto Fullstack
+# Backend (.NET 5) + Frontend (React + Vite + TS)
+# ===========================
+
+# ---------- .NET Core ----------
+bin/
+obj/
+**/bin/
+**/obj/
+*.user
+*.userosscache
+*.suo
+*.sln.docstates
+*.vs/
+.vscode/
+*.dbmdl
+*.pdb
+*.dll
+*.exe
+*.log
+*.ide
+*.ncb
+*.opensdf
+*.sdf
+*.cache
+*.ilk
+*.iobj
+*.ipdb
+*.iuser
+*.aps
+*.pch
+*.rsp
+*.tlb
+*.tlh
+*.tlog
+*.lastbuildstate
+*.idb
+*.iobj
+*.ipdb
+_ReSharper*/
+*.resharper
+_ReSharper*/
+_ReSharper.Caches/
+
+# Dotnet publish output
+publish/
+publish/**
+
+# ---------- Visual Studio ----------
+.vs/
+*.csproj.user
+*.csproj.nuget.g.props
+*.csproj.nuget.g.targets
+
+# ---------- Rider ----------
+.idea/
+
+# ---------- Node / Frontend ----------
+node_modules/
+dist/
+build/
+.env
+.env.local
+.env.*.local
+
+# npm logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Vite cache
+.vite/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Logs
+logs/
+*.log
+
+# Optional: Mac OS system files
+.DS_Store
+
+# Optional: Windows system files
+Thumbs.db
+ehthumbs.db
+
+# Optional: JetBrains IDE files
+.idea/
+*.iml
+
+# Optional: ESLint cache
+.eslintcache
+
+# Optional: Prettier cache
+.prettiercache
+
+# Optional: testing coverage
+coverage/

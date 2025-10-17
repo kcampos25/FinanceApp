@@ -1,0 +1,19 @@
+USE FINANCIAL_SYSTEM_DB;
+GO
+
+
+DELETE FROM DepositCertificates;
+DBCC CHECKIDENT ('DepositCertificates', RESEED, 0);
+
+DELETE FROM cards;
+DBCC CHECKIDENT ('cards', RESEED, 0);
+
+DELETE FROM Currencies;
+DBCC CHECKIDENT ('Currencies', RESEED, 0);
+
+DELETE FROM Banks;
+DBCC CHECKIDENT ('Banks', RESEED, 0);
+
+DELETE FROM Card_Types;
+DBCC CHECKIDENT ('Card_Types', RESEED, 0);
+
