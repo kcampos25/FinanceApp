@@ -53,7 +53,7 @@ const DepositCertificateList: React.FC = () => {
 
       {!isLoading && !isError && DepositCertificates.length === 0 && (
         <Alert severity="info" sx={{ mb: 2 }}>
-          No Deposit Certificates found. Try adding a new Deposit Certificate.
+          No Deposit Certificates found. Please try adding a new Deposit Certificate.
         </Alert>
       )}
 

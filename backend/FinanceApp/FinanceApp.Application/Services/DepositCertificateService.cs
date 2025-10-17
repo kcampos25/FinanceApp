@@ -64,7 +64,7 @@ namespace FinanceApp.Application.Services
         {
             var existing = await _certificateRepository.GetByIdAsync(id);
             if (existing == null)
-                throw new KeyNotFoundException($"Certificate with id {id} not found.");
+                throw new KeyNotFoundException($"Deposit Certificate with id {id} not found.");
 
             existing = _mapper.Map<DepositCertificateEntity>(dto);
             existing.CertificateId = id;
