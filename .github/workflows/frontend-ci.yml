@@ -1,0 +1,47 @@
+name: Frontend CI
+
+on:
+  pull_request:
+    branches:
+      - development
+      - 'release/*'
+    paths:
+      - 'frontend/**'
+
+jobs:
+  lint-and-build:
+    name: Lint & Build (Node / Vite)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'    # ajusta si prefieres 20.x o una versión concreta
+
+      - name: Cache node modules
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies
+        working-directory: frontend/FinanceApp
+        run: npm ci
+
+      - name: Run linter
+        working-directory: frontend/FinanceApp
+        run: |
+          if [ -f package.json ]; then
+            # ejecuta lint si existe script
+            npm run lint || true
+          fi
+
+      - name: Build
+        working-directory: frontend/FinanceApp
+        run: npm run build

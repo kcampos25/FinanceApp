@@ -1,0 +1,44 @@
+name: Backend CI
+
+on:
+  pull_request:
+    branches:
+      - development
+      - 'release/*'
+    paths:
+      - 'backend/**'
+
+jobs:
+  build-and-test:
+    name: Build & Test (.NET)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v3
+        with:
+          # Ajusta la versión si usas otra; el ejemplo usa .NET 5.x porque mencionaste .NET Core 5
+          dotnet-version: '5.0.x'
+
+      - name: Cache NuGet packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.nuget/packages
+          key: nuget-${{ runner.os }}-$(if ${{ hashFiles('**/*.csproj') }} then ${{ hashFiles('**/*.csproj') }} else 'no-lock')
+          restore-keys: |
+            nuget-${{ runner.os }}-
+
+      - name: Restore dependencies
+        working-directory: backend/FinanceApp
+        run: dotnet restore
+
+      - name: Build
+        working-directory: backend/FinanceApp
+        run: dotnet build --no-restore --configuration Release
+
+      - name: Run tests
+        working-directory: backend/FinanceApp
+        run: dotnet test --no-build --verbosity normal
