@@ -9,8 +9,10 @@ using System.Threading.Tasks;
 
 namespace FinanceApp.Application.Services
 {
+    //bank service
     public class BankService : IBankService
     {
+
         private readonly IBankRepository _bankRepository;
         private readonly IMapper _mapper;
 

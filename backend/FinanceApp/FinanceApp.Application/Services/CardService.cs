@@ -10,8 +10,10 @@ using System.Threading.Tasks;
 
 namespace FinanceApp.Application.Services
 {
+    //card service
     public class CardService: ICardService
     {
+
         private readonly ICardRepository _cardRepository;
         private readonly IBankRepository _bankRepository;
         private readonly ICurrencyRepository _currencyRepository;
