@@ -10,9 +10,9 @@ using Microsoft.Data.SqlClient;
 
 namespace FinanceApp.Infrastructure.Repositories
 {
+    // class to practice
     public class Learning
     {
-
         private readonly FinanceDbContext _context;
         public Learning(FinanceDbContext context)
         {
@@ -32,6 +32,7 @@ namespace FinanceApp.Infrastructure.Repositories
 
         // Practice 1
         //********************************************************************************************
+
 
         //1.1 Consulta por id
         public async Task<BankEntity> getById(int id)
