@@ -10,8 +10,10 @@ using System.Threading.Tasks;
 
 namespace FinanceApp.Infrastructure.Repositories
 {
+    //card repository
     public class CardRepository : ICardRepository
     {
+
         private readonly FinanceDbContext _context;
 
         public CardRepository(FinanceDbContext context)
