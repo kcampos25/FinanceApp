@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 
 namespace FinanceApp.Application.Services
 {
-    //bank service logic
     public class BankService : IBankService
     {
         private readonly IBankRepository _bankRepository;
