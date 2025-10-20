@@ -44,7 +44,13 @@ jobs:
         working-directory: backend/FinanceApp
         run: dotnet build --no-restore --configuration Release
 
+      - name: Install libssl1.1 (required for .NET 5 test host)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libssl1.1 || true
+
       - name: Run tests
         working-directory: backend/FinanceApp
         run: dotnet test --configuration Release --verbosity normal
+
 
