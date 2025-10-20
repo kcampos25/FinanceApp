@@ -9,8 +9,10 @@ using System.Threading.Tasks;
 
 namespace FinanceApp.Infrastructure.Repositories
 {
+    //Deposi tCertificate Repository
     public class DepositCertificateRepository : IDepositCertificateRepository
     {
+
         private readonly FinanceDbContext _context;
         public DepositCertificateRepository(FinanceDbContext context)
         {

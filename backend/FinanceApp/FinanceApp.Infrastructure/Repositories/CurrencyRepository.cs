@@ -9,8 +9,10 @@ using System.Threading.Tasks;
 
 namespace FinanceApp.Infrastructure.Repositories
 {
+    //Currency Repository
     public class CurrencyRepository : ICurrencyRepository
     {
+
         private readonly FinanceDbContext _context;
         public CurrencyRepository(FinanceDbContext context)
         {
