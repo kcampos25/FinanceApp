@@ -1,6 +1,6 @@
-import React from 'react';
-import { Card, Typography, Box } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { Card, Typography, Box } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 interface CardItemProps {
   title: string;
@@ -14,8 +14,8 @@ const CardItem: React.FC<CardItemProps> = ({
   title,
   icon,
   route,
-  background = '#fff',
-  textColor = '#000',
+  background = "#fff",
+  textColor = "#000",
 }) => {
   const navigate = useNavigate();
 
@@ -24,19 +24,19 @@ const CardItem: React.FC<CardItemProps> = ({
       sx={{
         width: 200,
         height: 160,
-        cursor: 'pointer',
-        transition: 'transform 0.2s',
-        '&:hover': {
-          transform: 'scale(1.05)',
+        cursor: "pointer",
+        transition: "transform 0.2s",
+        "&:hover": {
+          transform: "scale(1.05)",
         },
         background,
         color: textColor,
         boxShadow: 3,
         borderRadius: 2,
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
       }}
       onClick={() => navigate(route)}
     >

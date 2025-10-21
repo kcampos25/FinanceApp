@@ -1,28 +1,28 @@
-import React, { useMemo, useState } from 'react';
-import { Box, CircularProgress, Alert, TextField } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
-import { useBanks } from './hooks/useBanks';
-import type { ColumnTable, CrudFilter } from '../../components/CrudTable/types';
-import CrudTable from '../../components/CrudTable/CrudTable';
-import ConfirmDialog from '../../components/ConfirmDialog';
-import CrudPage from '../../layouts/CrudPage';
-import { CrudMode } from '../../utils/enums/generalEnum';
+import React, { useMemo, useState } from "react";
+import { Box, CircularProgress, Alert, TextField } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { useBanks } from "./hooks/useBanks";
+import type { ColumnTable, CrudFilter } from "../../components/CrudTable/types";
+import CrudTable from "../../components/CrudTable/CrudTable";
+import ConfirmDialog from "../../components/ConfirmDialog";
+import CrudPage from "../../layouts/CrudPage";
+import { CrudMode } from "../../utils/enums/generalEnum";
 
 const BankList: React.FC = () => {
   const navigate = useNavigate();
   const { getAll, deleteBank } = useBanks();
   const { data: banks = [], isLoading, isError, error } = getAll;
 
-  const [filterText, setFilterText] = useState('');
+  const [filterText, setFilterText] = useState("");
   const [bankToDelete, setBankToDelete] = useState<(typeof banks)[0] | null>(null);
 
   const columns: ColumnTable<(typeof banks)[0]>[] = [
-    { fieldName: 'bankId', columnname: 'ID', isSortable: true },
-    { fieldName: 'description', columnname: 'Description', isSortable: true },
+    { fieldName: "bankId", columnname: "ID", isSortable: true },
+    { fieldName: "description", columnname: "Description", isSortable: true },
   ];
 
   const filters: CrudFilter<(typeof banks)[0]>[] = useMemo(() => {
-    return filterText ? [{ field: 'description', value: filterText }] : [];
+    return filterText ? [{ field: "description", value: filterText }] : [];
   }, [filterText]);
 
   const filterFunction = (bank: (typeof banks)[0], filters: CrudFilter<(typeof banks)[0]>[]) => {
@@ -43,7 +43,7 @@ const BankList: React.FC = () => {
     }
   };
   const handleGoToCreate = () => {
-    navigate('/banks/create');
+    navigate("/banks/create");
   };
 
   return (
@@ -61,7 +61,7 @@ const BankList: React.FC = () => {
         size="small"
         value={filterText}
         onChange={(e) => setFilterText(e.target.value)}
-        sx={{ mb: 2, width: '300px' }}
+        sx={{ mb: 2, width: "300px" }}
       />
 
       {isLoading && (

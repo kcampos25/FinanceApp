@@ -1,17 +1,17 @@
-import { Box, TextField } from '@mui/material';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import type { DepositCertificateFormValues } from './types';
-import CrudPage from '../../layouts/CrudPage';
-import { CrudMode } from '../../utils/enums/generalEnum';
-import { useNavigate } from 'react-router-dom';
-import { useBankOptions } from '../../utils/hooks/useBankOptions';
-import { useCurrencyOptions } from '../../utils/hooks/useCurrencyOptions';
-import NumberInput from '../../components/Controls/NumberInput';
-import SelectInput from '../../components/Controls/SelectInput';
-import { today } from '../../utils/errorHandler';
-import { validationSchema } from './validationSchema';
-import CheckBoxInput from '../../components/Controls/CheckBoxInput';
+import { Box, TextField } from "@mui/material";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import type { DepositCertificateFormValues } from "./types";
+import CrudPage from "../../layouts/CrudPage";
+import { CrudMode } from "../../utils/enums/generalEnum";
+import { useNavigate } from "react-router-dom";
+import { useBankOptions } from "../../utils/hooks/useBankOptions";
+import { useCurrencyOptions } from "../../utils/hooks/useCurrencyOptions";
+import NumberInput from "../../components/Controls/NumberInput";
+import SelectInput from "../../components/Controls/SelectInput";
+import { today } from "../../utils/errorHandler";
+import { validationSchema } from "./validationSchema";
+import CheckBoxInput from "../../components/Controls/CheckBoxInput";
 
 interface DepositCertificateFormProps {
   initialValues?: DepositCertificateFormValues;
@@ -23,16 +23,16 @@ interface DepositCertificateFormProps {
 const defaultFormValues: DepositCertificateFormValues = {
   bankId: 0,
   currencyId: 0,
-  owner_name: '',
-  description: '',
-  comment: '',
-  amount: '0,00',
+  owner_name: "",
+  description: "",
+  comment: "",
+  amount: "0,00",
   start_date: today,
   expiration_date: today,
-  interest_amount: '0,00',
+  interest_amount: "0,00",
   isActive: false,
 };
-
+//edit form deposit certifcate
 const DepositCertificateForm: React.FC<DepositCertificateFormProps> = ({
   initialValues,
   onSubmit,
@@ -54,18 +54,18 @@ const DepositCertificateForm: React.FC<DepositCertificateFormProps> = ({
   } = useForm<DepositCertificateFormValues>({
     resolver: yupResolver(validationSchema),
     defaultValues: initialValues ?? defaultFormValues,
-    mode: 'onChange',
+    mode: "onChange",
   });
 
   const handleGoToList = () => {
-    navigate('/depositCertificates');
+    navigate("/depositCertificates");
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <CrudPage
         mode={isEditMode ? CrudMode.Edit : CrudMode.Create}
-        formTitle={isEditMode ? 'Edit Deposit Certificate' : 'Add Deposit Certificate'}
+        formTitle={isEditMode ? "Edit Deposit Certificate" : "Add Deposit Certificate"}
         onAddClick={() => ({})}
         addTittle=""
         isSubmitting={isSubmitting}
@@ -73,11 +73,11 @@ const DepositCertificateForm: React.FC<DepositCertificateFormProps> = ({
       >
         <Box
           sx={{
-            display: 'grid',
+            display: "grid",
             gap: 2,
             gridTemplateColumns: {
-              xs: '1fr',
-              sm: 'repeat(2, 1fr)',
+              xs: "1fr",
+              sm: "repeat(2, 1fr)",
             },
           }}
         >
@@ -105,7 +105,7 @@ const DepositCertificateForm: React.FC<DepositCertificateFormProps> = ({
           <TextField
             fullWidth
             label="Owner Name"
-            {...register('owner_name')}
+            {...register("owner_name")}
             error={!!errors.owner_name}
             helperText={errors.owner_name?.message}
           />
@@ -114,7 +114,7 @@ const DepositCertificateForm: React.FC<DepositCertificateFormProps> = ({
           <TextField
             fullWidth
             label="Description"
-            {...register('description')}
+            {...register("description")}
             error={!!errors.description}
             helperText={errors.description?.message}
           />
@@ -140,7 +140,7 @@ const DepositCertificateForm: React.FC<DepositCertificateFormProps> = ({
                 shrink: true,
               },
             }}
-            {...register('start_date')}
+            {...register("start_date")}
             error={!!errors.start_date}
             helperText={errors.start_date?.message}
           />
@@ -155,26 +155,26 @@ const DepositCertificateForm: React.FC<DepositCertificateFormProps> = ({
                 shrink: true,
               },
             }}
-            {...register('expiration_date')}
+            {...register("expiration_date")}
             error={!!errors.expiration_date}
             helperText={errors.expiration_date?.message}
           />
 
           {/* Comment */}
-          <Box sx={{ gridColumn: 'span 2' }}>
+          <Box sx={{ gridColumn: "span 2" }}>
             <TextField
               fullWidth
               label="Comment"
               multiline
               rows={4}
-              {...register('comment')}
+              {...register("comment")}
               error={!!errors.comment}
               helperText={errors.comment?.message}
             />
           </Box>
 
           {/* Is Active */}
-          <Box sx={{ gridColumn: 'span 2' }}>
+          <Box sx={{ gridColumn: "span 2" }}>
             <CheckBoxInput name="isActive" label="Is Active" control={control} errors={errors} />
           </Box>
         </Box>

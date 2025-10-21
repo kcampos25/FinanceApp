@@ -1,10 +1,10 @@
-import { axiosInstance, CURRENCIES_API } from '../constants/api-routes';
+import { axiosInstance, CURRENCIES_API } from "../constants/api-routes";
 import type {
   CreateCurrencyDTO,
   CurrencyDTO,
   UpdateCurrencyDTO,
-} from '../features/currencies/types';
-import type { ListItemDTO } from '../utils/types';
+} from "../features/currencies/types";
+import type { ListItemDTO } from "../utils/types";
 
 export const currencyApi = {
   getAll: async (): Promise<CurrencyDTO[]> => {

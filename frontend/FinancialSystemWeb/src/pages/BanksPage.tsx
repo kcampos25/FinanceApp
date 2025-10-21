@@ -1,9 +1,9 @@
-import React from 'react';
-import { Routes, Route, Navigate, useParams, useNavigate } from 'react-router-dom';
-import BankForm from '../features/banks/BankForm';
-import BankList from '../features/banks/BankList';
-import { Alert, CircularProgress, Box } from '@mui/material';
-import { useBanks } from '../features/banks/hooks/useBanks';
+import React from "react";
+import { Routes, Route, Navigate, useParams, useNavigate } from "react-router-dom";
+import BankForm from "../features/banks/BankForm";
+import BankList from "../features/banks/BankList";
+import { Alert, CircularProgress, Box } from "@mui/material";
+import { useBanks } from "../features/banks/hooks/useBanks";
 
 const EditBank: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -26,10 +26,10 @@ const EditBank: React.FC = () => {
       id: numericId,
       data: {
         description: data.description,
-        updatedBy: 'admin',
+        updatedBy: "admin",
       },
     });
-    navigate('/banks');
+    navigate("/banks");
   };
 
   if (isLoading) {
@@ -43,7 +43,7 @@ const EditBank: React.FC = () => {
   if (isError || !bank) {
     return (
       <Alert severity="error" sx={{ mt: 4 }}>
-        Error loading bank: {error?.message || 'Not found'}
+        Error loading bank: {error?.message || "Not found"}
       </Alert>
     );
   }
@@ -64,9 +64,9 @@ const CreateBank: React.FC = () => {
   const handleSubmit = async (data: { description: string }) => {
     await createBank.mutateAsync({
       description: data.description,
-      createdBy: 'admin',
+      createdBy: "admin",
     });
-    navigate('/banks');
+    navigate("/banks");
   };
 
   return <BankForm onSubmit={handleSubmit} />;

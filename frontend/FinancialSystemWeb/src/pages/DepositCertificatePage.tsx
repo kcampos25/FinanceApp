@@ -1,10 +1,10 @@
-import { Navigate, Route, Routes, useNavigate, useParams } from 'react-router-dom';
-import DepositCertificateList from '../features/depositCertificate/DepositCertificateList';
-import { useDepositCertificate } from '../features/depositCertificate/hooks/useDepositCertificate';
-import { Alert, Box, CircularProgress } from '@mui/material';
-import type { DepositCertificateFormValues } from '../features/depositCertificate/types';
-import DepositCertificateForm from '../features/depositCertificate/DepositCertificateForm';
-import { formatDate, formatNumberWithCommas } from '../utils/helpers';
+import { Navigate, Route, Routes, useNavigate, useParams } from "react-router-dom";
+import DepositCertificateList from "../features/depositCertificate/DepositCertificateList";
+import { useDepositCertificate } from "../features/depositCertificate/hooks/useDepositCertificate";
+import { Alert, Box, CircularProgress } from "@mui/material";
+import type { DepositCertificateFormValues } from "../features/depositCertificate/types";
+import DepositCertificateForm from "../features/depositCertificate/DepositCertificateForm";
+import { formatDate, formatNumberWithCommas } from "../utils/helpers";
 
 const EditDepositCertificate: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -23,7 +23,7 @@ const EditDepositCertificate: React.FC = () => {
   if (isError || !depositCertificate) {
     return (
       <Alert severity="error" sx={{ mt: 4 }}>
-        Error loading deposit certificate: {error?.message || 'Not found'}
+        Error loading deposit certificate: {error?.message || "Not found"}
       </Alert>
     );
   }
@@ -37,15 +37,15 @@ const EditDepositCertificate: React.FC = () => {
         owner_name: data.owner_name,
         description: data.description,
         comment: data.comment,
-        amount: Number((data.amount ?? '').replace(/,/g, '')),
-        interest_amount: Number((data.interest_amount ?? '').replace(/,/g, '')),
+        amount: Number((data.amount ?? "").replace(/,/g, "")),
+        interest_amount: Number((data.interest_amount ?? "").replace(/,/g, "")),
         start_date: data.start_date,
         expiration_date: data.expiration_date,
         isActive: data.isActive,
-        updatedBy: 'admin',
+        updatedBy: "admin",
       },
     });
-    navigate('/DepositCertificates');
+    navigate("/DepositCertificates");
   };
 
   const initialFormValues: DepositCertificateFormValues = {
@@ -72,14 +72,14 @@ const CreateDepositCertificate: React.FC = () => {
       owner_name: data.owner_name,
       description: data.description,
       comment: data.comment,
-      amount: Number((data.amount ?? '').replace(/,/g, '')),
-      interest_amount: Number((data.interest_amount ?? '').replace(/,/g, '')),
+      amount: Number((data.amount ?? "").replace(/,/g, "")),
+      interest_amount: Number((data.interest_amount ?? "").replace(/,/g, "")),
       start_date: data.start_date,
       expiration_date: data.expiration_date,
       isActive: data.isActive,
-      createdBy: 'admin',
+      createdBy: "admin",
     });
-    navigate('/DepositCertificates');
+    navigate("/DepositCertificates");
   };
 
   return <DepositCertificateForm onSubmit={handleSubmit} />;
