@@ -19,7 +19,7 @@ interface DepositCertificatesCardsProps {
   urlEdit: string;
   onDeleteClick: (id: number) => void;
 }
-
+// list of deposit certificates
 const DepositCertificatesCards: React.FC<DepositCertificatesCardsProps> = ({
   certificates,
   urlEdit,
