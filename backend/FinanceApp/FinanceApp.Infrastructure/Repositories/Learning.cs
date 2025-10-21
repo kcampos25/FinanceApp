@@ -173,6 +173,7 @@ namespace FinanceApp.Infrastructure.Repositories
         }
 
         //insert
+
         public async Task<BankEntity> Insert(BankEntity bankEntity)
         {
 
@@ -185,6 +186,7 @@ namespace FinanceApp.Infrastructure.Repositories
 
         }
 
+        //update
         public async Task update(int id, BankEntity bankEntity)
         {
             var bank = await _context.Banks.FindAsync(id);
