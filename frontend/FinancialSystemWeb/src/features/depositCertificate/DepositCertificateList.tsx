@@ -1,11 +1,11 @@
-import { useNavigate } from 'react-router-dom';
-import CrudPage from '../../layouts/CrudPage';
-import { CrudMode } from '../../utils/enums/generalEnum';
-import DepositCertificateCard from './components/DepositCertificateCard';
-import { useDepositCertificate } from './hooks/useDepositCertificate';
-import ConfirmDialog from '../../components/ConfirmDialog';
-import { useState } from 'react';
-import { Alert, Box, CircularProgress } from '@mui/material';
+import { useNavigate } from "react-router-dom";
+import CrudPage from "../../layouts/CrudPage";
+import { CrudMode } from "../../utils/enums/generalEnum";
+import DepositCertificateCard from "./components/DepositCertificateCard";
+import { useDepositCertificate } from "./hooks/useDepositCertificate";
+import ConfirmDialog from "../../components/ConfirmDialog";
+import { useState } from "react";
+import { Alert, Box, CircularProgress } from "@mui/material";
 
 const DepositCertificateList: React.FC = () => {
   const [depositCertificateToDelete, setDepositCertificateToDelete] = useState<number | null>(null);
@@ -15,7 +15,7 @@ const DepositCertificateList: React.FC = () => {
   const { data: DepositCertificates = [], isLoading, isError, error } = getDetail;
 
   const handleGoToCreate = () => {
-    navigate('/depositCertificates/create');
+    navigate("/depositCertificates/create");
   };
 
   const confirmDelete = async () => {

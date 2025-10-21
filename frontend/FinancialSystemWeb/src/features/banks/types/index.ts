@@ -17,4 +17,4 @@ export interface UpdateBankDTO {
   updatedBy: string;
 }
 
-export type BankFormValues = Pick<CreateBankDTO, 'description'>;
+export type BankFormValues = Pick<CreateBankDTO, "description">;

@@ -10,11 +10,11 @@ import {
   Tooltip,
   TablePagination,
   type SortDirection,
-} from '@mui/material';
-import { useMemo, useState } from 'react';
-import type { ColumnTable, CrudFilter } from './types';
-import { Delete, Edit } from '@mui/icons-material';
-import { useNavigate } from 'react-router-dom';
+} from "@mui/material";
+import { useMemo, useState } from "react";
+import type { ColumnTable, CrudFilter } from "./types";
+import { Delete, Edit } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 
 type CrudTableProps<T> = {
   columns: ColumnTable<T>[];
@@ -36,16 +36,16 @@ const CrudTable = <T,>({
   filterFunction,
 }: CrudTableProps<T>) => {
   const [columnOrderBy, setColumnOrderBy] = useState<keyof T | null>(null);
-  const [columnOrder, setColumnOrder] = useState<SortDirection>('asc');
+  const [columnOrder, setColumnOrder] = useState<SortDirection>("asc");
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const navigate = useNavigate();
 
   const handleSortByColumn = (fieldName: keyof T) => {
     if (columnOrderBy === fieldName) {
-      setColumnOrder((prev) => (prev === 'asc' ? 'desc' : 'asc'));
+      setColumnOrder((prev) => (prev === "asc" ? "desc" : "asc"));
     } else {
-      setColumnOrder('asc');
+      setColumnOrder("asc");
       setColumnOrderBy(fieldName);
     }
   };
@@ -70,12 +70,12 @@ const CrudTable = <T,>({
       const aValue = a[columnOrderBy];
       const bValue = b[columnOrderBy];
 
-      if (typeof aValue === 'string' && typeof bValue === 'string') {
-        return columnOrder === 'asc' ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue);
+      if (typeof aValue === "string" && typeof bValue === "string") {
+        return columnOrder === "asc" ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue);
       }
 
-      if (typeof aValue === 'number' && typeof bValue === 'number') {
-        return columnOrder === 'asc' ? aValue - bValue : bValue - aValue;
+      if (typeof aValue === "number" && typeof bValue === "number") {
+        return columnOrder === "asc" ? aValue - bValue : bValue - aValue;
       }
 
       return 0;
@@ -90,12 +90,12 @@ const CrudTable = <T,>({
     <>
       <Table
         sx={{
-          border: '1px solid #e0e0e0',
+          border: "1px solid #e0e0e0",
           borderRadius: 1,
         }}
       >
         <TableHead>
-          <TableRow sx={{ backgroundColor: 'rgba(0, 0, 0, 0.04)' }}>
+          <TableRow sx={{ backgroundColor: "rgba(0, 0, 0, 0.04)" }}>
             {columns.map((column) =>
               column.isSortable ? (
                 <TableCell
@@ -106,8 +106,8 @@ const CrudTable = <T,>({
                     active={columnOrderBy === column.fieldName}
                     direction={
                       (columnOrderBy === column.fieldName ? columnOrder : undefined) as
-                        | 'asc'
-                        | 'desc'
+                        | "asc"
+                        | "desc"
                         | undefined
                     }
                     onClick={() => handleSortByColumn(column.fieldName)}
@@ -129,7 +129,7 @@ const CrudTable = <T,>({
               key={String(row[columnKeyname])}
               hover
               sx={{
-                backgroundColor: index % 2 === 0 ? '#fafafa' : 'white',
+                backgroundColor: index % 2 === 0 ? "#fafafa" : "white",
               }}
             >
               {columns.map((column) => (
@@ -137,10 +137,10 @@ const CrudTable = <T,>({
                   key={String(column.fieldName)}
                   align={
                     column.fieldName === columnKeyname
-                      ? 'left'
-                      : typeof row[column.fieldName] === 'number'
-                        ? 'right'
-                        : 'left'
+                      ? "left"
+                      : typeof row[column.fieldName] === "number"
+                        ? "right"
+                        : "left"
                   }
                 >
                   {String(row[column.fieldName])}

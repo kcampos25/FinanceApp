@@ -1,11 +1,11 @@
-import { FormControl, TextField } from '@mui/material';
+import { FormControl, TextField } from "@mui/material";
 import {
   Controller,
   type Control,
   type FieldErrors,
   type FieldValues,
   type Path,
-} from 'react-hook-form';
+} from "react-hook-form";
 
 interface NumberInputProps<T extends FieldValues> {
   name: Path<T>;
@@ -15,12 +15,12 @@ interface NumberInputProps<T extends FieldValues> {
 }
 
 const sanitizeInput = (value: string): string => {
-  let sanitized = '';
+  let sanitized = "";
   let hasDecimal = false;
   let decimalCount = 0;
 
   for (const char of value) {
-    if (char >= '0' && char <= '9') {
+    if (char >= "0" && char <= "9") {
       if (hasDecimal) {
         if (decimalCount < 2) {
           sanitized += char;
@@ -31,7 +31,7 @@ const sanitizeInput = (value: string): string => {
       } else {
         sanitized += char;
       }
-    } else if (char === '.' && !hasDecimal) {
+    } else if (char === "." && !hasDecimal) {
       sanitized += char;
       hasDecimal = true;
     }
@@ -63,15 +63,15 @@ const NumberInput = <T extends FieldValues>({
               onChange(sanitized);
             }}
             onBlur={() => {
-              const numberValue = Number(String(value).replace(/,/g, ''));
+              const numberValue = Number(String(value).replace(/,/g, ""));
               if (!isNaN(numberValue)) {
-                const formatted = numberValue.toLocaleString('en-US', {
+                const formatted = numberValue.toLocaleString("en-US", {
                   minimumFractionDigits: 2,
                   maximumFractionDigits: 2,
                 });
                 onChange(formatted);
               } else {
-                onChange('');
+                onChange("");
               }
               onBlur();
             }}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   AppBar,
   Toolbar,
@@ -9,9 +9,9 @@ import {
   Box,
   CssBaseline,
   Container,
-} from '@mui/material';
-import { useNavigate, useLocation } from 'react-router-dom';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+} from "@mui/material";
+import { useNavigate, useLocation } from "react-router-dom";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const navigate = useNavigate();
@@ -36,19 +36,19 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   };
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+    <Box sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
       <CssBaseline />
       <AppBar position="fixed">
-        <Toolbar sx={{ justifyContent: 'space-between' }}>
-          <Typography variant="h6" onClick={() => navigate('/')} sx={{ cursor: 'pointer' }}>
+        <Toolbar sx={{ justifyContent: "space-between" }}>
+          <Typography variant="h6" onClick={() => navigate("/")} sx={{ cursor: "pointer" }}>
             Financial System
           </Typography>
 
           <Box>
             <Button
               color="inherit"
-              onClick={() => navigate('/')}
-              sx={{ fontWeight: isSelected('/') ? 'bold' : 'normal' }}
+              onClick={() => navigate("/")}
+              sx={{ fontWeight: isSelected("/") ? "bold" : "normal" }}
             >
               Home
             </Button>
@@ -58,16 +58,16 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
               onClick={handleToolsMenuOpen}
               endIcon={<ArrowDropDownIcon />}
               sx={{
-                fontWeight: location.pathname.startsWith('/banks') ? 'bold' : 'normal',
+                fontWeight: location.pathname.startsWith("/banks") ? "bold" : "normal",
               }}
             >
               Tools
             </Button>
 
             <Menu anchorEl={anchorEl} open={toolsMenuOpen} onClose={handleToolsMenuClose}>
-              <MenuItem onClick={() => handleNavigate('/banks')}>Banks</MenuItem>
-              <MenuItem onClick={() => handleNavigate('/currencies')}>Currencies</MenuItem>
-              <MenuItem onClick={() => handleNavigate('/depositCertificates')}>
+              <MenuItem onClick={() => handleNavigate("/banks")}>Banks</MenuItem>
+              <MenuItem onClick={() => handleNavigate("/currencies")}>Currencies</MenuItem>
+              <MenuItem onClick={() => handleNavigate("/depositCertificates")}>
                 Deposit Certificates
               </MenuItem>
             </Menu>
@@ -81,10 +81,10 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         component="main"
         sx={{
           flexGrow: 1,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'flex-start',
-          bgcolor: 'transparent',
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "flex-start",
+          bgcolor: "transparent",
           px: 2,
         }}
       >

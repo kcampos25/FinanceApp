@@ -1,10 +1,10 @@
-import React from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
-import HomePage from '../pages/HomePage';
-import BanksPage from '../pages/BanksPage';
-import MainLayout from '../layouts/MainLayout';
-import CurrencyPage from '../pages/CurrencyPage';
-import DepositCertificatePage from '../pages/DepositCertificatePage';
+import React from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+import HomePage from "../pages/HomePage";
+import BanksPage from "../pages/BanksPage";
+import MainLayout from "../layouts/MainLayout";
+import CurrencyPage from "../pages/CurrencyPage";
+import DepositCertificatePage from "../pages/DepositCertificatePage";
 
 const AppRoutes: React.FC = () => (
   <MainLayout>

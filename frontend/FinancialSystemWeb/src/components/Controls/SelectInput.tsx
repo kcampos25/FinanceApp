@@ -1,12 +1,12 @@
-import { FormControl, FormHelperText, InputLabel, MenuItem, Select } from '@mui/material';
+import { FormControl, FormHelperText, InputLabel, MenuItem, Select } from "@mui/material";
 import {
   Controller,
   type Control,
   type FieldErrors,
   type FieldValues,
   type Path,
-} from 'react-hook-form';
-import type { ListItemDTO } from '../../utils/types';
+} from "react-hook-form";
+import type { ListItemDTO } from "../../utils/types";
 
 interface SelectInputProps<T extends FieldValues> {
   name: Path<T>;

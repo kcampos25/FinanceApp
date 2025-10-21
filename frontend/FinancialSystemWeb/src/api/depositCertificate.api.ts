@@ -1,10 +1,10 @@
-import { axiosInstance, DEPOSIT_CERTIFICATES_API } from '../constants/api-routes';
+import { axiosInstance, DEPOSIT_CERTIFICATES_API } from "../constants/api-routes";
 import type {
   CreateDepositCertificateDTO,
   DepositCertificateDTO,
   DepositCertificateViewDTO,
   UpdateDepositCertificateDTO,
-} from '../features/depositCertificate/types';
+} from "../features/depositCertificate/types";
 
 export const depositCertificate = {
   getAll: async (): Promise<DepositCertificateDTO[]> => {

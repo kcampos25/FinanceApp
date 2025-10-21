@@ -1,6 +1,6 @@
-import { Box, Button, Typography } from '@mui/material';
-import type { CrudMode as CrudModeType } from '../utils/enums/generalEnum';
-import { CrudMode } from '../utils/enums/generalEnum';
+import { Box, Button, Typography } from "@mui/material";
+import type { CrudMode as CrudModeType } from "../utils/enums/generalEnum";
+import { CrudMode } from "../utils/enums/generalEnum";
 
 type CrudPageProps = {
   mode: CrudModeType;
@@ -26,29 +26,29 @@ const CrudPage: React.FC<CrudPageProps> = ({
   return (
     <Box
       sx={{
-        width: '100%',
+        width: "100%",
         maxWidth: {
-          xs: '100%', // Small screens: use full width
+          xs: "100%", // Small screens: use full width
           sm: 600, // Tablets
           md: 900, // Normal desktops
           lg: 1400, // Large desktops
         },
-        bgcolor: 'background.paper',
+        bgcolor: "background.paper",
         borderRadius: 2,
         boxShadow: 3,
-        overflowX: 'auto', // Prevents horizontal overflows
-        overflowY: 'auto',
+        overflowX: "auto", // Prevents horizontal overflows
+        overflowY: "auto",
         p: { xs: 2, sm: 3, md: 4 }, // Adaptive padding
-        mx: 'auto', // Horizontal centering
-        maxHeight: '90vh', // Taller on large screens
+        mx: "auto", // Horizontal centering
+        maxHeight: "90vh", // Taller on large screens
       }}
     >
       {mode === CrudMode.List && (
         <Box
           display="flex"
-          flexDirection={{ xs: 'column', sm: 'row' }}
+          flexDirection={{ xs: "column", sm: "row" }}
           justifyContent="space-between"
-          alignItems={{ xs: 'stretch', sm: 'center' }}
+          alignItems={{ xs: "stretch", sm: "center" }}
           mb={3}
           gap={2}
         >
@@ -72,11 +72,11 @@ const CrudPage: React.FC<CrudPageProps> = ({
           <Button variant="contained" color="primary" type="submit" disabled={isSubmitting}>
             {isSubmitting
               ? mode === CrudMode.Edit
-                ? 'Updating...'
-                : 'Creating...'
+                ? "Updating..."
+                : "Creating..."
               : mode === CrudMode.Edit
-                ? 'Update'
-                : 'Create'}
+                ? "Update"
+                : "Create"}
           </Button>
 
           <Button variant="outlined" onClick={onCancelClick}>

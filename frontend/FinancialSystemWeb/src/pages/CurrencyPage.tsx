@@ -1,8 +1,8 @@
-import { Navigate, Route, Routes, useNavigate, useParams } from 'react-router-dom';
-import CurrencyList from '../features/currencies/CurrencyList';
-import CurrencyForm from '../features/currencies/CurrencyForm';
-import { useCurrencies } from '../features/currencies/hooks/useCurrencies';
-import { Alert, Box, CircularProgress } from '@mui/material';
+import { Navigate, Route, Routes, useNavigate, useParams } from "react-router-dom";
+import CurrencyList from "../features/currencies/CurrencyList";
+import CurrencyForm from "../features/currencies/CurrencyForm";
+import { useCurrencies } from "../features/currencies/hooks/useCurrencies";
+import { Alert, Box, CircularProgress } from "@mui/material";
 
 const EditCurrency: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -23,7 +23,7 @@ const EditCurrency: React.FC = () => {
   if (isError || !currency) {
     return (
       <Alert severity="error" sx={{ mt: 4 }}>
-        Error loading currency: {error?.message || 'Not found'}
+        Error loading currency: {error?.message || "Not found"}
       </Alert>
     );
   }
@@ -33,10 +33,10 @@ const EditCurrency: React.FC = () => {
       id: Number(id),
       data: {
         description: data.description,
-        updatedBy: 'admin',
+        updatedBy: "admin",
       },
     });
-    navigate('/currencies');
+    navigate("/currencies");
   };
 
   return <CurrencyForm initialValues={currency} onSubmit={handleSubmit} isEditMode />;
@@ -49,9 +49,9 @@ const CreateCurrency: React.FC = () => {
   const handleSubmit = async (data: { description: string }) => {
     await createCurrency.mutateAsync({
       description: data.description,
-      createdBy: 'admin',
+      createdBy: "admin",
     });
-    navigate('/currencies');
+    navigate("/currencies");
   };
 
   return <CurrencyForm onSubmit={handleSubmit} />;
