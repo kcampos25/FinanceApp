@@ -136,7 +136,6 @@ namespace FinanceApp.Infrastructure.Repositories
             return banks;
         }
 
-
         private Bank MaptoBankModel(BankEntity bankEntity)
         {
             return new Bank()
@@ -170,7 +169,7 @@ namespace FinanceApp.Infrastructure.Repositories
             return MapToEntity(bankModel);
         }
 
-        //test update
+        //test update 1
         public async Task update(int id, BankEntity bankEntity)
         {
             var bank = await _context.Banks.FindAsync(id);
@@ -182,8 +181,6 @@ namespace FinanceApp.Infrastructure.Repositories
 
             await _context.SaveChangesAsync();
         }
-
-
 
     }
 }
