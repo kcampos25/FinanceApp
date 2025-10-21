@@ -16,15 +16,22 @@ on:
 
 jobs:
   build-and-test:
-    runs-on: ubuntu-20.04  # <--- Cambio aquí
+    name: Build & Test (.NET)
+    runs-on: ubuntu-latest  # Usa ubuntu-latest para evitar runners colgados
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Setup .NET SDK
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '5.0.x'
+
+      - name: Install libssl1.1 for .NET 5 compatibility
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libssl1.1 || true
 
       - name: Cache NuGet packages
         uses: actions/cache@v4
@@ -44,7 +51,8 @@ jobs:
 
       - name: Run tests
         working-directory: backend/FinanceApp
-        run: dotnet test --configuration Release --verbosity normal
+        run: dotnet test --no-build --configuration Release --verbosity normal
+
 
 
 
