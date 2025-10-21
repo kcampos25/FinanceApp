@@ -3,10 +3,8 @@ using FinanceApp.Infrastructure.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Data.SqlClient;
 
 namespace FinanceApp.Infrastructure.Repositories
 {
@@ -19,23 +17,13 @@ namespace FinanceApp.Infrastructure.Repositories
             _context = context;
         }
 
-        //private BankEntity MapToEntity(Bank bank)
-        //{
-        //    if (bank == null) return null;
-
-        //    return new BankEntity
-        //    {
-        //        BankId = bank.BankId,
-        //        Description = bank.Description
-        //    };
-        //}
-
-        // Practice 1
+        // Practice
         //********************************************************************************************
 
         //1.1 Consulta por id
         public async Task<BankEntity> getById(int id)
         {
+
             var bank = await _context.Banks.FindAsync(id);
 
             //return (bank == null) ? null : new BankEntity
