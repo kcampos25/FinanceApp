@@ -3,10 +3,8 @@ using FinanceApp.Infrastructure.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Data.SqlClient;
 
 namespace FinanceApp.Infrastructure.Repositories
 {
@@ -19,24 +17,15 @@ namespace FinanceApp.Infrastructure.Repositories
             _context = context;
         }
 
-        //private BankEntity MapToEntity(Bank bank)
-        //{
-        //    if (bank == null) return null;
-
-        //    return new BankEntity
-        //    {
-        //        BankId = bank.BankId,
-        //        Description = bank.Description
-        //    };
-        //}
-
-        // Practice 1
+        // Practice
         //********************************************************************************************
 
         //1.1 Consulta por id
         public async Task<BankEntity> getById(int id)
         {
+            //test
             var bank = await _context.Banks.FindAsync(id);
+
 
             //return (bank == null) ? null : new BankEntity
             //{
@@ -67,7 +56,6 @@ namespace FinanceApp.Infrastructure.Repositories
 
             return bank;
         }
-
 
         // Practice 2
         //********************************************************************************************
@@ -148,7 +136,6 @@ namespace FinanceApp.Infrastructure.Repositories
             return banks;
         }
 
-
         private Bank MaptoBankModel(BankEntity bankEntity)
         {
             return new Bank()
@@ -159,6 +146,7 @@ namespace FinanceApp.Infrastructure.Repositories
             };
         }
 
+        //map to entity
         private BankEntity MapToEntity(Bank bank)
         {
             if (bank == null) return null;
@@ -170,31 +158,31 @@ namespace FinanceApp.Infrastructure.Repositories
             };
         }
 
+        //test insert
         public async Task<BankEntity> Insert(BankEntity bankEntity)
         {
-
             var bankModel = MaptoBankModel(bankEntity);
 
             _context.Banks.Add(bankModel);
             await _context.SaveChangesAsync();
 
             return MapToEntity(bankModel);
-
         }
 
+        //test update 1
         public async Task update(int id, BankEntity bankEntity)
         {
+            //find bank
             var bank = await _context.Banks.FindAsync(id);
             if (bank == null) throw new KeyNotFoundException($" key not found {id}");
 
+            //update bank
             bank.Description = bankEntity.Description;
             bank.UpdatedBy = "kcampos";
             bank.UpdatedAt = DateTime.Now;
 
             await _context.SaveChangesAsync();
         }
-
-
 
     }
 }
