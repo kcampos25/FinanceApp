@@ -25,13 +25,14 @@ jobs:
         sudo apt-get install -y libssl1.1
 
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore backend/FinanceApp/FinanceApp.sln
 
     - name: Build project
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build backend/FinanceApp/FinanceApp.sln --configuration Release --no-restore
 
     - name: Run tests
-      run: dotnet test --no-build --configuration Release --verbosity normal
+      run: dotnet test backend/FinanceApp/FinanceApp.sln --no-build --configuration Release --verbosity normal
+
 
 
 
