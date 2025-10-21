@@ -24,7 +24,9 @@ namespace FinanceApp.Infrastructure.Repositories
         public async Task<BankEntity> getById(int id)
         {
 
+
             var bank = await _context.Banks.FindAsync(id);
+
 
             //return (bank == null) ? null : new BankEntity
             //{
