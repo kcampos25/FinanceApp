@@ -159,18 +159,18 @@ namespace FinanceApp.Infrastructure.Repositories
             };
         }
 
+        //test insert
         public async Task<BankEntity> Insert(BankEntity bankEntity)
         {
-
             var bankModel = MaptoBankModel(bankEntity);
 
             _context.Banks.Add(bankModel);
             await _context.SaveChangesAsync();
 
             return MapToEntity(bankModel);
-
         }
 
+        //test update
         public async Task update(int id, BankEntity bankEntity)
         {
             var bank = await _context.Banks.FindAsync(id);
