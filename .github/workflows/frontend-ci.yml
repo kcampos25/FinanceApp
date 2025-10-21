@@ -1,18 +1,12 @@
 name: Frontend CI
 
 on:
-  push:
-    branches:
-      - development
-      - 'release/*'
-    paths:
-      - 'frontend/**'
   pull_request:
     branches:
       - development
       - 'release/*'
     paths:
-      - 'frontend/**'
+      - 'frontend/FinancialSystemWeb/**'
 
 jobs:
   lint-and-build:
@@ -26,23 +20,19 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20' # Recomendado: LTS actual (ajusta si usas 22 a propósito)
+          node-version: '22'
           cache: 'npm'
 
       - name: Install dependencies
-        working-directory: frontend/FinanceApp
+        working-directory: frontend/FinancialSystemWeb
         run: npm ci
 
       - name: Run linter
-        working-directory: frontend/FinanceApp
-        run: |
-          if npm run | grep -q "lint"; then
-            npm run lint
-          else
-            echo "No lint script defined, skipping..."
-          fi
+        working-directory: frontend/FinancialSystemWeb
+        run: npm run lint
 
       - name: Build
-        working-directory: frontend/FinanceApp
+        working-directory: frontend/FinancialSystemWeb
         run: npm run build
+
 
