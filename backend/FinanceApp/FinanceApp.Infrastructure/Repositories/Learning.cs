@@ -45,7 +45,6 @@ namespace FinanceApp.Infrastructure.Repositories
             return MapToEntity(bank);
         }
 
-
         // 1.3 Consulta por id
         public async Task<BankEntity> GetById_BankTest(int id)
         {
@@ -57,7 +56,6 @@ namespace FinanceApp.Infrastructure.Repositories
 
             return bank;
         }
-
 
         // Practice 2
         //********************************************************************************************
@@ -149,6 +147,7 @@ namespace FinanceApp.Infrastructure.Repositories
             };
         }
 
+        //map to entity
         private BankEntity MapToEntity(Bank bank)
         {
             if (bank == null) return null;
