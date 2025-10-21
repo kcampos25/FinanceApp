@@ -1,10 +1,10 @@
-import axios from 'axios';
+import axios from "axios";
 
-export const API_BASE_URL = 'https://localhost:44364/api';
+export const API_BASE_URL = "https://localhost:44364/api";
 
 export const axiosInstance = axios.create({
   baseURL: API_BASE_URL,
-  headers: { 'Content-Type': 'application/json' },
+  headers: { "Content-Type": "application/json" },
 });
 
 // Banks APIS

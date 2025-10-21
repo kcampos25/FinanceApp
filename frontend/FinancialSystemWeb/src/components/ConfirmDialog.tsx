@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Dialog,
   DialogTitle,
@@ -6,7 +6,7 @@ import {
   DialogActions,
   Button,
   Typography,
-} from '@mui/material';
+} from "@mui/material";
 
 interface ConfirmDialogProps {
   open: boolean;
@@ -18,7 +18,7 @@ interface ConfirmDialogProps {
 
 const ConfirmDialog: React.FC<ConfirmDialogProps> = ({
   open,
-  title = 'Confirm',
+  title = "Confirm",
   message,
   onConfirm,
   onCancel,

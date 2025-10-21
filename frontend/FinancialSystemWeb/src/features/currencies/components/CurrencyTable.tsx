@@ -10,11 +10,11 @@ import {
   TableSortLabel,
   Tooltip,
   type SortDirection,
-} from '@mui/material';
-import { useMemo, useState } from 'react';
-import type { CurrencyDTO, currencyTableColumn } from '../types';
-import { Delete, Edit } from '@mui/icons-material';
-import { useNavigate } from 'react-router-dom';
+} from "@mui/material";
+import { useMemo, useState } from "react";
+import type { CurrencyDTO, currencyTableColumn } from "../types";
+import { Delete, Edit } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 
 interface CurrencyTableProps {
   currencyColumns: currencyTableColumn[];
@@ -34,16 +34,16 @@ const CurrencyTable: React.FC<CurrencyTableProps> = ({
   const navigate = useNavigate();
 
   const [columnOrderBy, setColumnOrderBy] = useState<keyof CurrencyDTO | null>(null);
-  const [columnOrder, setColumnOrder] = useState<SortDirection>('asc');
+  const [columnOrder, setColumnOrder] = useState<SortDirection>("asc");
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
   const handleSortByColumn = (fieldName: keyof CurrencyDTO) => {
     if (columnOrderBy === fieldName) {
-      setColumnOrder((prev) => (prev === 'asc' ? 'desc' : 'asc'));
+      setColumnOrder((prev) => (prev === "asc" ? "desc" : "asc"));
     } else {
       setColumnOrderBy(fieldName);
-      setColumnOrder('desc');
+      setColumnOrder("desc");
     }
   };
 
@@ -60,12 +60,12 @@ const CurrencyTable: React.FC<CurrencyTableProps> = ({
       const aValue = a[columnOrderBy];
       const bValue = b[columnOrderBy];
 
-      if (typeof aValue === 'string' && typeof bValue === 'string') {
-        return columnOrder === 'asc' ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue);
+      if (typeof aValue === "string" && typeof bValue === "string") {
+        return columnOrder === "asc" ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue);
       }
 
-      if (typeof aValue === 'number' && typeof bValue === 'number') {
-        return columnOrder === 'asc' ? aValue - bValue : bValue - aValue;
+      if (typeof aValue === "number" && typeof bValue === "number") {
+        return columnOrder === "asc" ? aValue - bValue : bValue - aValue;
       }
 
       return 0;
@@ -89,12 +89,12 @@ const CurrencyTable: React.FC<CurrencyTableProps> = ({
     <>
       <Table
         sx={{
-          border: '1px solid #e0e0e0',
+          border: "1px solid #e0e0e0",
           borderRadius: 1,
         }}
       >
         <TableHead>
-          <TableRow sx={{ backgroundColor: 'rgba(0, 0, 0, 0.04)' }}>
+          <TableRow sx={{ backgroundColor: "rgba(0, 0, 0, 0.04)" }}>
             {currencyColumns.map((column) =>
               column.isSortable ? (
                 <TableCell
@@ -105,7 +105,7 @@ const CurrencyTable: React.FC<CurrencyTableProps> = ({
                     active={columnOrderBy === column.fieldName}
                     direction={
                       columnOrderBy === column.fieldName
-                        ? (columnOrder as 'asc' | 'desc')
+                        ? (columnOrder as "asc" | "desc")
                         : undefined
                     }
                     onClick={() => handleSortByColumn(column.fieldName as keyof CurrencyDTO)}
@@ -127,7 +127,7 @@ const CurrencyTable: React.FC<CurrencyTableProps> = ({
               key={row.currencyId}
               hover
               sx={{
-                backgroundColor: index % 2 === 0 ? '#fafafa' : 'white',
+                backgroundColor: index % 2 === 0 ? "#fafafa" : "white",
               }}
             >
               <TableCell align="left">{row.currencyId}</TableCell>

@@ -1,11 +1,11 @@
-import { useNavigate } from 'react-router-dom';
-import CrudPage from '../../layouts/CrudPage';
-import { CrudMode } from '../../utils/enums/generalEnum';
-import type { CurrencyFormValues } from './types';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
-import { useForm } from 'react-hook-form';
-import { TextField } from '@mui/material';
+import { useNavigate } from "react-router-dom";
+import CrudPage from "../../layouts/CrudPage";
+import { CrudMode } from "../../utils/enums/generalEnum";
+import type { CurrencyFormValues } from "./types";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { useForm } from "react-hook-form";
+import { TextField } from "@mui/material";
 
 interface CurrencyFormProps {
   initialValues?: CurrencyFormValues;
@@ -14,7 +14,7 @@ interface CurrencyFormProps {
 }
 
 const schema = yup.object({
-  description: yup.string().required('Description is required').max(100),
+  description: yup.string().required("Description is required").max(100),
 });
 
 const CurrencyForm: React.FC<CurrencyFormProps> = ({
@@ -29,16 +29,16 @@ const CurrencyForm: React.FC<CurrencyFormProps> = ({
     formState: { errors, isSubmitting },
   } = useForm<CurrencyFormValues>({
     resolver: yupResolver(schema),
-    defaultValues: initialValues || { description: '' },
+    defaultValues: initialValues || { description: "" },
   });
   const handleGoToList = () => {
-    navigate('/currencies');
+    navigate("/currencies");
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <CrudPage
         mode={isEditMode ? CrudMode.Edit : CrudMode.Create}
-        formTitle={isEditMode ? 'Edit Currency' : 'Add Currency'}
+        formTitle={isEditMode ? "Edit Currency" : "Add Currency"}
         onAddClick={() => {}}
         addTittle=""
         isSubmitting={isSubmitting}
@@ -48,7 +48,7 @@ const CurrencyForm: React.FC<CurrencyFormProps> = ({
           label="Description"
           fullWidth
           margin="normal"
-          {...register('description')}
+          {...register("description")}
           error={!!errors.description}
           helperText={errors.description?.message}
         ></TextField>

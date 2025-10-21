@@ -1,11 +1,11 @@
-import { Checkbox, FormControl, FormControlLabel, FormHelperText } from '@mui/material';
+import { Checkbox, FormControl, FormControlLabel, FormHelperText } from "@mui/material";
 import {
   Controller,
   type Control,
   type FieldErrors,
   type FieldValues,
   type Path,
-} from 'react-hook-form';
+} from "react-hook-form";
 
 interface CheckBoxInputProps<T extends FieldValues> {
   name: Path<T>;

@@ -1,0 +1,44 @@
+name: Backend CI
+
+on:
+  pull_request:
+    branches:
+      - development
+    paths:
+      - 'backend/**'
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup .NET 5 SDK
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '5.0.x'
+
+    - name: Install libssl1.1 dependency for .NET 5
+      run: |
+        sudo add-apt-repository 'deb http://archive.ubuntu.com/ubuntu focal main restricted universe multiverse'
+        sudo apt-get update
+        sudo apt-get install -y libssl1.1
+
+    - name: Restore dependencies
+      run: dotnet restore backend/FinanceApp/FinanceApp.sln
+
+    - name: Build project
+      run: dotnet build backend/FinanceApp/FinanceApp.sln --configuration Release --no-restore
+
+    - name: Run tests
+      run: dotnet test backend/FinanceApp/FinanceApp.sln --no-build --configuration Release --verbosity normal
+
+
+
+
+
+
+
+

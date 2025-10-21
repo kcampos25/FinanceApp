@@ -1,6 +1,6 @@
-import { BANKS_API, axiosInstance } from '../constants/api-routes';
-import type { BankDTO, CreateBankDTO, UpdateBankDTO } from '../features/banks/types';
-import type { ListItemDTO } from '../utils/types';
+import { BANKS_API, axiosInstance } from "../constants/api-routes";
+import type { BankDTO, CreateBankDTO, UpdateBankDTO } from "../features/banks/types";
+import type { ListItemDTO } from "../utils/types";
 
 export const banksApi = {
   getAll: async (): Promise<BankDTO[]> => {

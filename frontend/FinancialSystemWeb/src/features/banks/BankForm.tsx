@@ -1,12 +1,12 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import { TextField } from '@mui/material';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
-import type { BankFormValues } from './types';
-import CrudPage from '../../layouts/CrudPage';
-import { CrudMode } from '../../utils/enums/generalEnum';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { useForm } from "react-hook-form";
+import { TextField } from "@mui/material";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import type { BankFormValues } from "./types";
+import CrudPage from "../../layouts/CrudPage";
+import { CrudMode } from "../../utils/enums/generalEnum";
+import { useNavigate } from "react-router-dom";
 
 interface BankFormProps {
   initialValues?: BankFormValues;
@@ -14,7 +14,7 @@ interface BankFormProps {
   isEditMode?: boolean;
 }
 const schema = yup.object({
-  description: yup.string().required('Description is required').max(100),
+  description: yup.string().required("Description is required").max(100),
 });
 
 const BankForm: React.FC<BankFormProps> = ({ initialValues, onSubmit, isEditMode = false }) => {
@@ -26,18 +26,18 @@ const BankForm: React.FC<BankFormProps> = ({ initialValues, onSubmit, isEditMode
     formState: { errors, isSubmitting },
   } = useForm<BankFormValues>({
     resolver: yupResolver(schema),
-    defaultValues: initialValues || { description: '' },
+    defaultValues: initialValues || { description: "" },
   });
 
   const handleGoToList = () => {
-    navigate('/banks');
+    navigate("/banks");
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <CrudPage
         mode={isEditMode ? CrudMode.Edit : CrudMode.Create}
-        formTitle={isEditMode ? 'Edit Bank' : 'Add Bank'}
+        formTitle={isEditMode ? "Edit Bank" : "Add Bank"}
         onAddClick={() => {}}
         addTittle=""
         isSubmitting={isSubmitting}
@@ -47,7 +47,7 @@ const BankForm: React.FC<BankFormProps> = ({ initialValues, onSubmit, isEditMode
           label="Description"
           fullWidth
           margin="normal"
-          {...register('description')}
+          {...register("description")}
           error={!!errors.description}
           helperText={errors.description?.message}
         />

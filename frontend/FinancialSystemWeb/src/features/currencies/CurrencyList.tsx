@@ -1,16 +1,16 @@
-import { useNavigate } from 'react-router-dom';
-import CrudPage from '../../layouts/CrudPage';
-import { CrudMode } from '../../utils/enums/generalEnum';
-import { useCurrencies } from './hooks/useCurrencies';
-import { Alert, Box, CircularProgress, TextField } from '@mui/material';
-import type { currencyTableColumn } from './types';
-import { useState } from 'react';
-import ConfirmDialog from '../../components/ConfirmDialog';
-import CurrencyTable from './components/CurrencyTable';
+import { useNavigate } from "react-router-dom";
+import CrudPage from "../../layouts/CrudPage";
+import { CrudMode } from "../../utils/enums/generalEnum";
+import { useCurrencies } from "./hooks/useCurrencies";
+import { Alert, Box, CircularProgress, TextField } from "@mui/material";
+import type { currencyTableColumn } from "./types";
+import { useState } from "react";
+import ConfirmDialog from "../../components/ConfirmDialog";
+import CurrencyTable from "./components/CurrencyTable";
 
 const currencyList: React.FC = () => {
   const navigate = useNavigate();
-  const [filterText, setFilterText] = useState('');
+  const [filterText, setFilterText] = useState("");
   const { getAll, deleteCurrency } = useCurrencies();
 
   const { data: currencies = [], isLoading, isError, error } = getAll;
@@ -18,12 +18,12 @@ const currencyList: React.FC = () => {
   const [currencyToDelete, setcurrencyToDelete] = useState<(typeof currencies)[0] | null>(null);
 
   const currencyColumns: currencyTableColumn[] = [
-    { columnName: 'ID', fieldName: 'currencyId', isSortable: true },
-    { columnName: 'Description', fieldName: 'description', isSortable: true },
+    { columnName: "ID", fieldName: "currencyId", isSortable: true },
+    { columnName: "Description", fieldName: "description", isSortable: true },
   ];
 
   const handleGoToCreate = () => {
-    navigate('/currencies/create');
+    navigate("/currencies/create");
   };
 
   const confirmDelete = async () => {
@@ -71,7 +71,7 @@ const currencyList: React.FC = () => {
         size="small"
         value={filterText}
         onChange={(e) => setFilterText(e.target.value)}
-        sx={{ mb: 2, width: '300px' }}
+        sx={{ mb: 2, width: "300px" }}
       ></TextField>
 
       {!isLoading && !isError && currencies.length > 0 && (
