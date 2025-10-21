@@ -92,13 +92,31 @@ namespace FinanceApp.Application.Tests
         [Fact]
         public async Task CreateAsync_ShouldReturnDTO_WhenMethodExist()
         {
-            //arrange
-            var cardDto = new CreateCardDTO {BankId=1,CurrencyId=1,OwnerName="kenneth" };
+            // Arrange
+            var cardDto = new CreateCardDTO
+            {
+                BankId = 1,
+                CurrencyId = 1,
+                OwnerName = "kenneth",
+                CardTypeId = 1,
+                Comment = "test",
+                IssueDate = DateTime.Now,
+                ExpirationDate = DateTime.Now
+            };
 
-            //act
+            _bankRepositoryMock.Setup(b => b.GetByIdAsync(1))
+                .ReturnsAsync(new BankEntity { BankId = 1 });
+
+            _currencyRepositoryMock.Setup(c => c.GetByIdAsync(1))
+                .ReturnsAsync(new CurrencyEntity { CurrencyId = 1 });
+
+            _cardRepositoryMock.Setup(c => c.AddAsync(It.IsAny<CardEntity>()))
+                .ReturnsAsync((CardEntity c) => c); // opcional para devolver el mismo
+
+            // Act
             var result = await _sut.CreateAsync(cardDto);
 
-            //assert
+            // Assert
             result.Should().NotBeNull();
             result.Should().BeOfType<CardDTO>();
         }
@@ -107,9 +125,9 @@ namespace FinanceApp.Application.Tests
         public async Task CreateAsync_ShouldReturnDTO_WhenBank_CurrencyExist()
         {
             //arrange
-            var cardDto = new CreateCardDTO { BankId = 1, CurrencyId = 1, OwnerName = "kenneth" };
-            var cardEntity = new CardEntity { BankId = 1, CurrencyId = 1, OwnerName = "kenneth" };
-            _cardRepositoryMock.Setup(card => card.AddAsync(It.Is<CardEntity>(c => c.BankId==1 && c.CurrencyId==1 && c.OwnerName== "kenneth") )).ReturnsAsync(cardEntity);
+            var cardDto = new CreateCardDTO { BankId = 1, CurrencyId = 1, OwnerName = "kenneth", CardTypeId = 1,Comment="test", IssueDate=DateTime.Now, ExpirationDate = DateTime.Now };
+            var cardEntity = new CardEntity { BankId = 1, CurrencyId = 1, OwnerName = "kenneth", CardTypeId=1, Comment = "test", IssueDate = DateTime.Now, ExpirationDate = DateTime.Now };
+            _cardRepositoryMock.Setup(card => card.AddAsync(It.Is<CardEntity>(c => c.BankId==1 && c.CurrencyId==1 && c.OwnerName== "kenneth" && c.Comment == "test" && c.CardTypeId ==1) )).ReturnsAsync(cardEntity);
 
             var bank = new BankEntity { BankId = 1, Description = "BAC" };
             _bankRepositoryMock.Setup(bank => bank.GetByIdAsync(1)).ReturnsAsync(bank);
@@ -132,15 +150,20 @@ namespace FinanceApp.Application.Tests
         {
             //arrange
 
-            var cardDto = new UpdateCardDTO { BankId = 1, CurrencyId = 1, OwnerName = "kenneth" };
+            var cardDto = new UpdateCardDTO { BankId = 1, CurrencyId = 1, OwnerName = "kenneth", CardTypeId=1,Comment="test",IssueDate=DateTime.Now,ExpirationDate=DateTime.Now };
             var cardId = 1;
 
-            var cardEntity = new CardEntity { CardId = 1, BankId = 1, CurrencyId = 1 };
+            var cardEntity = new CardEntity { CardId = 1, BankId = 1, CurrencyId = 1 , CardTypeId = 1, Comment = "test", IssueDate = DateTime.Now, ExpirationDate = DateTime.Now };
             _cardRepositoryMock.Setup(c => c.GetByIdAsync(1)).ReturnsAsync(cardEntity);
+           
+            _bankRepositoryMock.Setup(b => b.GetByIdAsync(1))
+                   .ReturnsAsync(new BankEntity { BankId = 1 });
 
+            _currencyRepositoryMock.Setup(c => c.GetByIdAsync(1))
+                .ReturnsAsync(new CurrencyEntity { CurrencyId = 1 });
             //act
 
-             await _sut.UpdateAsync(cardId, cardDto);
+            await _sut.UpdateAsync(cardId, cardDto);
 
             //assert
 
@@ -175,10 +198,16 @@ namespace FinanceApp.Application.Tests
         public async Task UpdateAsync_ShouldUpdatePropertiesCorrectly()
         {
             // Arrange
-            var card = new CardEntity { OwnerName = "OldName", Comment = "Old" };
+            var card = new CardEntity {BankId=1,CurrencyId=1,CardTypeId=1, OwnerName = "OldName", Comment = "Old", IssueDate = DateTime.Now, ExpirationDate = DateTime.Now };
             _cardRepositoryMock.Setup(r => r.GetByIdAsync(1)).ReturnsAsync(card);
 
-            var dto = new UpdateCardDTO { OwnerName = "NewName", Comment = "NewComment" };
+            var dto = new UpdateCardDTO { BankId = 1, CurrencyId = 1, CardTypeId = 1, OwnerName = "NewName", Comment = "NewComment" , IssueDate = DateTime.Now, ExpirationDate = DateTime.Now };
+
+            _bankRepositoryMock.Setup(b => b.GetByIdAsync(1))
+        .ReturnsAsync(new BankEntity { BankId = 1 });
+
+            _currencyRepositoryMock.Setup(c => c.GetByIdAsync(1))
+                .ReturnsAsync(new CurrencyEntity { CurrencyId = 1 });
 
             // Act
             await _sut.UpdateAsync(1, dto);
@@ -195,12 +224,12 @@ namespace FinanceApp.Application.Tests
         {
             //arrange
 
-            var card = new CardEntity { BankId=1, OwnerName = "OldName", Comment = "Old" };
+            var card = new CardEntity { BankId=1, CurrencyId=1, CardTypeId=1, OwnerName = "OldName", Comment = "Old", IssueDate = DateTime.Now, ExpirationDate = DateTime.Now };
             _cardRepositoryMock.Setup(r => r.GetByIdAsync(1)).ReturnsAsync(card);
 
             _bankRepositoryMock.Setup(bank => bank.GetByIdAsync(1)).ReturnsAsync((BankEntity)null);
 
-            var dto = new UpdateCardDTO { BankId = 1, OwnerName = "NewName", Comment = "NewComment" };
+            var dto = new UpdateCardDTO { BankId = 1, CurrencyId = 1, CardTypeId=1, OwnerName = "NewName", Comment = "NewComment", IssueDate = DateTime.Now, ExpirationDate = DateTime.Now };
 
 
             Func<Task> act = async () => await _sut.UpdateAsync(1, dto);
