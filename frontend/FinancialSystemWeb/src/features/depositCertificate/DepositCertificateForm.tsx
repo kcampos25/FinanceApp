@@ -32,7 +32,7 @@ const defaultFormValues: DepositCertificateFormValues = {
   interest_amount: '0,00',
   isActive: false,
 };
-
+//edit form deposit certifcate
 const DepositCertificateForm: React.FC<DepositCertificateFormProps> = ({
   initialValues,
   onSubmit,
