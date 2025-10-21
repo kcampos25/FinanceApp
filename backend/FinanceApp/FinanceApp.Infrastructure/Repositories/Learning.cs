@@ -23,8 +23,7 @@ namespace FinanceApp.Infrastructure.Repositories
         //1.1 Consulta por id
         public async Task<BankEntity> getById(int id)
         {
-
-
+            //test
             var bank = await _context.Banks.FindAsync(id);
 
 
@@ -45,6 +44,7 @@ namespace FinanceApp.Infrastructure.Repositories
 
             return MapToEntity(bank);
         }
+
 
         // 1.3 Consulta por id
         public async Task<BankEntity> GetById_BankTest(int id)
