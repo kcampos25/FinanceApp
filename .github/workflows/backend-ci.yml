@@ -3,55 +3,39 @@ name: Backend CI
 on:
   push:
     branches:
-      - development
-      - 'release/*'
-    paths:
-      - 'backend/**'
+      - main
+      - 'feature/**'
   pull_request:
     branches:
-      - development
-      - 'release/*'
-    paths:
-      - 'backend/**'
+      - main
 
 jobs:
   build-and-test:
-    name: Build & Test (.NET)
-    runs-on: ubuntu-latest  # Usa ubuntu-latest para evitar runners colgados
+    runs-on: ubuntu-20.04
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      - name: Setup .NET SDK
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: '5.0.x'
+    - name: Setup .NET 5 SDK
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '5.0.x'
 
-      - name: Install libssl1.1 for .NET 5 compatibility
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y libssl1.1 || true
+    - name: Install OpenSSL dependency (libssl1.1)
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libssl1.1
 
-      - name: Cache NuGet packages
-        uses: actions/cache@v4
-        with:
-          path: ~/.nuget/packages
-          key: nuget-${{ runner.os }}-${{ hashFiles('**/*.csproj') }}
-          restore-keys: |
-            nuget-${{ runner.os }}-
+    - name: Restore dependencies
+      run: dotnet restore
 
-      - name: Restore dependencies
-        working-directory: backend/FinanceApp
-        run: dotnet restore
+    - name: Build project
+      run: dotnet build --configuration Release --no-restore
 
-      - name: Build
-        working-directory: backend/FinanceApp
-        run: dotnet build --no-restore --configuration Release
+    - name: Run tests
+      run: dotnet test --no-build --configuration Release --verbosity normal
 
-      - name: Run tests
-        working-directory: backend/FinanceApp
-        run: dotnet test --no-build --configuration Release --verbosity normal
 
 
 
