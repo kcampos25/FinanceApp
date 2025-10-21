@@ -172,9 +172,11 @@ namespace FinanceApp.Infrastructure.Repositories
         //test update 1
         public async Task update(int id, BankEntity bankEntity)
         {
+            //find bank
             var bank = await _context.Banks.FindAsync(id);
             if (bank == null) throw new KeyNotFoundException($" key not found {id}");
 
+            //update bank
             bank.Description = bankEntity.Description;
             bank.UpdatedBy = "kcampos";
             bank.UpdatedAt = DateTime.Now;
